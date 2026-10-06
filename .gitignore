@@ -1,0 +1,65 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### Office / Excel 暫存檔（處理 Excel 必加） ###
+# 當用 Excel 打開檔案時，Office 會自動產生以 ~$ 開頭的鎖定暫存檔
+~$*.xlsx
+~$*.xls
+~$*.csv
+
+### Windows 系統垃圾檔 ###
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+### macOS 系統檔案（若團隊有 Mac 成員） ###
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+### 執行期日誌與暫存檔案 ###
+*.log
+logs/
+temp/
+tmp/
+
+### 本機設定覆蓋（若有環境變數或私有連線設定） ###
+application-local.properties
+application-local.yml
+application-local.yaml
+.env
