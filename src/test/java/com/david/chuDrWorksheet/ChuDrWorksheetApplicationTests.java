@@ -14,9 +14,9 @@ class ChuDrWorksheetApplicationTests {
 
 	@Test
 	void testProcessExcel() {
-		String sourceFile = "C:\\Users\\q966q\\eclipse-workspace-2025-12\\chuWorkingTableWorkspace\\chuData\\小闖的秘密寶典26年9月.xlsx";
-		String templateFile = "C:\\Users\\q966q\\eclipse-workspace-2025-12\\chuWorkingTableWorkspace\\chuData\\醫生操作sample.xlsx";
-		String outputFile = "C:\\Users\\q966q\\eclipse-workspace-2025-12\\chuWorkingTableWorkspace\\chuData\\醫生操作9月.xlsx";
+		String sourceFile = "C:\\Users\\user\\coding\\connieWorkspace\\chuData\\小闖的秘密寶典26年9月.xlsx";
+		String templateFile = "C:\\Users\\user\\coding\\connieWorkspace\\chuData\\醫生操作sample.xlsx";
+		String outputFile = "C:\\Users\\user\\coding\\connieWorkspace\\chuData\\醫生操作9月.xlsx";
 
 		try {
 			transformService.transformWorksheet(sourceFile, templateFile, outputFile);
