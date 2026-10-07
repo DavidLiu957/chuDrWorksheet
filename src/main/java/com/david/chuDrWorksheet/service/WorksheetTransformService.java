@@ -77,7 +77,7 @@ public class WorksheetTransformService {
 				String customerName = getCellValueAsString(srcRow.getCell(COL_CUSTOMER_NAME));
 				String amountStr = getCellValueAsString(srcRow.getCell(COL_AMOUNT));
 				String totalCountStr = getCellValueAsString(srcRow.getCell(COL_TOTAL_COUNT));
-				String usedCountStr = parseMaxUsedCount(getCellValueAsString(srcRow.getCell(COL_USED_COUNT)));
+				String usedCountStr = getCellValueAsString(srcRow.getCell(COL_USED_COUNT));
 				String remaining = getCellValueAsString(srcRow.getCell(COL_REMAINING_COUNT));
 				String treatment = getCellValueAsString(srcRow.getCell(COL_TREATMENT));
 				String position = getCellValueAsString(srcRow.getCell(COL_POSITION));
@@ -128,8 +128,8 @@ public class WorksheetTransformService {
 				boolean hasCounts = !totalCountStr.trim().isEmpty() && !usedCountStr.trim().isEmpty();
 
 				if (isMatched && hasCounts) {
-					customerInfo = String.format("%s %s-%s 使用%s 剩餘%s %s", customerName, totalCountStr.trim(),
-							usedCountStr.trim(), positionUnits, remaining, finalAmount).trim();
+					customerInfo = String.format("%s 使用%s 剩餘%s %s", customerName, positionUnits, remaining, finalAmount)
+							.trim();
 				} else if (hasCounts) {
 					// 兩者皆有值: "客戶姓名 總次數-使用次數 金額"
 					customerInfo = String
@@ -234,46 +234,5 @@ public class WorksheetTransformService {
 			}
 		}
 		return false;
-	}
-
-	/**
-	 * 處理療程使用次數： 若包含小數點或多個數字（如 "5.6"、"3.4"、"11.12"），分割並取出較大的數值回傳。 若無小數點或純整數，則原樣回傳。
-	 */
-	private String parseMaxUsedCount(String rawValue) {
-		if (rawValue == null || rawValue.trim().isEmpty()) {
-			return "";
-		}
-
-		String cleanVal = rawValue.trim();
-
-		// 判斷是否含有小數點
-		if (cleanVal.contains(".")) {
-			// 以小數點為分隔符（正則需轉義 \\.）
-			String[] parts = cleanVal.split("\\.");
-			try {
-				long maxVal = Long.MIN_VALUE;
-				boolean hasValidNumber = false;
-
-				for (String part : parts) {
-					String trimmedPart = part.trim();
-					if (!trimmedPart.isEmpty()) {
-						long current = Long.parseLong(trimmedPart);
-						if (current > maxVal) {
-							maxVal = current;
-							hasValidNumber = true;
-						}
-					}
-				}
-
-				if (hasValidNumber) {
-					return String.valueOf(maxVal);
-				}
-			} catch (NumberFormatException e) {
-				// 若包含非純數字字元（如 5.6次），保留原始字串
-				return cleanVal;
-			}
-		}
-
-		return cleanVal;
 	}
 }
